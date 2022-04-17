@@ -26,6 +26,34 @@ func isPalindromePermutation(s string) bool {
 	return ans
 }
 
+/*
+using bitVector to reduce space
+0 0 0 0 0
+^
+0 0 0 0 1
+= 0 0 0 0 1
+at the end, need to check if the bit string has at most 1's bit
+
+0 1 0 1 0 0  - 1 = 0 1 0 0 1 1
+
+0 1 0 1 0 0
+&
+0 1 0 0 1 1
+
+*/
+func bitVector(s string) bool {
+	count := 0
+	for i := 0; i < len(s); i++ {
+		curChar := s[i] - 'a'
+		if curChar >= 0 {
+			count = count ^ 1<<curChar
+		}
+	}
+	fmt.Println(count)
+	ans := count & (count - 1)
+	return ans == 0
+}
+
 func reduceLoop(s string) bool {
 	charMap := make([]int, 26)
 	count := 0
@@ -47,5 +75,6 @@ func reduceLoop(s string) bool {
 }
 
 func main() {
-	fmt.Println(reduceLoop("tct   a"))
+	fmt.Println(bitVector("tct   ca"))
+	fmt.Println(bitVector("tct   a"))
 }
