@@ -1,0 +1,16 @@
+version: "3.5"
+
+services:
+  database:
+    container_name: database
+    image: postgres:12.8
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=todo
+    ports:
+      - 5432:5432
+
+volumes:
+  db:
