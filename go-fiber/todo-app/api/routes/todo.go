@@ -11,4 +11,5 @@ func TodoRoute(app *fiber.App, service todo.Service) {
 	todoPath := "/todo"
 	app.Get(todoPath, handlers.FetchTodo(service))
 	app.Post(todoPath, handlers.InsertBook(service))
+	app.Put(todoPath+"/:todoID", handlers.UpdateTodoStatus(service))
 }

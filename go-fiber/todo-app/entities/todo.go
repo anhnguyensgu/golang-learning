@@ -1,6 +1,8 @@
 package entities
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type Todo struct {
 	gorm.Model
@@ -8,4 +10,5 @@ type Todo struct {
 	Title     string `json:"title"`
 	Author    string `json:"author"`
 	AccountID uint
+	Status    string `json:"status"`
 }

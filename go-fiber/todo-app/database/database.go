@@ -32,7 +32,7 @@ func SetupDatabase() {
 
 	log.Println("running migration")
 
-	db.AutoMigrate(&entities.Account{})
+	db.AutoMigrate(&entities.Account{}, &entities.Todo{})
 
 	DB = DbInstance{
 		Db: db,
