@@ -20,8 +20,8 @@ func insert(intervals [][]int, newInterval []int) [][]int {
 	}
 
 	ans := [][]int{}
-
-	for i := 0; i < len(intervals); i++ {
+	i := 0
+	for ; i < len(intervals); i++ {
 		if newInterval[0] > intervals[i][0] {
 			if newInterval[0] <= intervals[i][1] {
 				newInterval[0] = intervals[i][0]
@@ -37,13 +37,17 @@ func insert(intervals [][]int, newInterval []int) [][]int {
 					newInterval[1] = intervals[i][1]
 				}
 			} else {
-				ans = append(ans, newInterval)
-				newInterval = intervals[i]
+				// ans = append(ans, newInterval)
+				// newInterval = intervals[i]
+				break
 			}
 		}
 	}
 
 	ans = append(ans, newInterval)
+	if i < len(intervals)-1 {
+		ans = append(ans, intervals[i:]...)
+	}
 
 	return ans
 }
