@@ -36,3 +36,29 @@ func TestAppendCharacter(tctx *testing.T) {
 		tctx.Fail()
 	}
 }
+
+func TestLongestPalindrom(t *testing.T) {
+	var s string
+	var expect, actual int
+
+	s = "abccccdd"
+	expect = 7
+	actual = longestPalindrome(s)
+	if expect != actual {
+		t.Fail()
+	}
+
+	s = "a"
+	expect = 1
+	actual = longestPalindrome(s)
+	if expect != actual {
+		t.Fail()
+	}
+
+	s = "aaa"
+	expect = 3
+	actual = longestPalindrome(s)
+	if expect != actual {
+		t.Fail()
+	}
+}

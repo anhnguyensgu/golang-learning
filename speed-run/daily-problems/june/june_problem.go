@@ -14,3 +14,29 @@ func appendCharacters(s string, t string) int {
 
 	return len(t) - subseqIdx
 }
+
+func longestPalindrome(s string) int {
+	ans := 0
+	count := [256]int{}
+	for _, c := range s {
+		count[c]++
+	}
+	haveOdd := false
+
+	for _, a := range count {
+		if a == 0 {
+			continue
+		}
+
+		if a%2 == 0 {
+			ans += a
+		} else {
+			ans += a - 1
+			haveOdd = true
+		}
+	}
+	if haveOdd {
+		return ans + 1
+	}
+	return ans
+}
