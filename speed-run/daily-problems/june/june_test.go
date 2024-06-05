@@ -62,3 +62,13 @@ func TestLongestPalindrom(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestCommonChars(t *testing.T) {
+	var words []string
+	var ans []string
+
+	words = []string{"bella", "label", "roller"}
+	ans = commonChars(words)
+	fmt.Println(ans)
+
+}
