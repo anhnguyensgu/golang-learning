@@ -1,6 +1,9 @@
 package june
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func appendCharacters(s string, t string) int {
 	idx, subseqIdx := 0, 0
@@ -74,4 +77,48 @@ func commonChars(words []string) []string {
 	}
 
 	return ans
+}
+
+func isNStraightHand(hand []int, groupSize int) bool {
+	if len(hand)%groupSize != 0 {
+		return false
+	}
+	count := map[int]int{}
+	for _, c := range hand {
+		count[c]++
+	}
+	keys := []int{}
+	for k := range count {
+		keys = append(keys, k)
+	}
+
+	sort.Ints(keys)
+	for i := 0; i < len(keys); i++ {
+		for count[keys[i]] != 0 {
+			last := keys[i]
+			count[last]--
+			k := i + 1
+
+			for ; k < i+groupSize && k < len(keys); k++ {
+				if keys[k]-last != 1 {
+					return false
+				}
+				cur, ok := count[keys[k]]
+				if !ok {
+					return false
+				}
+				if cur < 1 {
+					return false
+				}
+				count[keys[k]]--
+				last = keys[k]
+			}
+			if k-i != groupSize {
+				return false
+			}
+		}
+	}
+
+	return true
+
 }

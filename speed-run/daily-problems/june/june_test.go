@@ -72,3 +72,17 @@ func TestCommonChars(t *testing.T) {
 	fmt.Println(ans)
 
 }
+
+func TestIsNStraightHand(t *testing.T) {
+	var hand []int
+	var groupSize int
+	var actual, expect bool
+
+	expect = true
+	// hand = []int{1, 2, 3, 6, 2, 3, 4, 7, 8}
+	hand = []int{1, 2, 3, 1, 2, 3}
+	groupSize = 3
+	if actual = isNStraightHand(hand, groupSize); actual != expect {
+		t.Fail()
+	}
+}
